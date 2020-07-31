@@ -25,7 +25,7 @@ def crear_ventana_principal():
     """Crea ventana principal con sus widgets"""
     global root
     root = Tk()
-    root.title("REFERENCIO 3.000")
+    root.title("REFERNCIAS")
     root.geometry("1300x800+100+50")
     root.resizable(False, False)
     root.columnconfigure(0, weight=1)
@@ -453,6 +453,7 @@ def lista_notas():
     return lista_valores
 
 def crear_botones_filtro():
+    """Crea los botones de filtro"""
     global Autores, Tipos, op_documento, op_autor, op_funcion
     btn_fil_aplicar = Button(frame_fi, text="Aplica filtro", command=aplicar_filtro)
     btn_fil_aplicar.grid(row=0, column=0, columnspan=2, pady=10, padx=10, ipadx=170)
@@ -536,7 +537,7 @@ def imagen_inicial():
         lab_noregistros = Label(frame_im, text="No hay registros")
         lab_noregistros.pack(anchor=CENTER)
     else:
-        my_img2 = (Image.open(Images[cont])) # AQUI HAY QUE CAMBIAR EL NOMBRE DE LA LISTA
+        my_img2 = (Image.open(Images[cont])) 
         my_img1 = ImageTk.PhotoImage(img_size(my_img2))
         my_label = Label(frame_im, image = my_img1)
         my_label.image = my_img1

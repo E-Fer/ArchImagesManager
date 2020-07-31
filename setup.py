@@ -15,11 +15,12 @@ config = {
         'PIL',
         'os',
         'sqlite3',
-        'tkFileDialog'
+        'tkFileDialog',
+        'ntpath'
         ], 
     'packages': ['NAME'], 
     'scripts': [],
-    'name': 'projectname'
+    'name': 'RA'
 }
 
 setup(**config)
