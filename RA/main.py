@@ -25,7 +25,7 @@ def crear_ventana_principal():
     """Crea ventana principal con sus widgets"""
     global root
     root = Tk()
-    root.title("REFERNCIAS")
+    root.title("ArchImgManager")
     root.geometry("1300x800+100+50")
     root.resizable(False, False)
     root.columnconfigure(0, weight=1)
@@ -318,7 +318,7 @@ def crear_botones_DB():
 # FUNCIONES FILTRO
 def aplicar_filtro():
     """Aplica filtro en visualizador de imágenes"""
-    global Images
+    global Images, Infos
     conn = sqlite3.connect('libro_referencias.db')
     c = conn.cursor()
     doc = op_documento.get()
@@ -344,7 +344,7 @@ def aplicar_filtro():
     Images[:] = []
     Infos[:] = []
     for record in records:
-        Images.append(record[0])
+        Images.append(ruta_completa(record[0]))
         Infos.append((record[1], record[2], record[3], record[4], record[5], record[6], record[7]))
     conn.commit()
     conn.close()
@@ -582,7 +582,7 @@ def ir_slider():
 
 def crear_label_info():
     """Crea una etiqueta con la info de la imagen mostrada."""
-    global lab_indice, lab_doc, lab_aut, lab_pro
+    global lab_indice, lab_doc, lab_aut, lab_pro, lab_not1, lab_not2
     lab_indice = Label (frame_info, text=str(cont+1) + "/" + str(len(Infos)) + "       \n", justify=LEFT).grid(row=0,column=0,sticky=NW)
     lab_aut = Label(frame_info, text="AUTOR:\t\t"+str((Infos[cont])[1])+" "*30, justify=LEFT).grid(row=1, column=0,sticky=NW)
     lab_pro = Label(frame_info, text="PROYECTO:\t"+str((Infos[cont])[2])+" "*30+"\n", justify=LEFT).grid(row=2, column=0,sticky=NW)
@@ -590,7 +590,9 @@ def crear_label_info():
     lab_loc = Label(frame_info, text="LOCALIZACION:\t"+str((Infos[cont])[4])+" "*30, justify=LEFT).grid(row=4, column=0,sticky=NW)
     lab_fec = Label(frame_info, text="FECHA:\t\t"+str((Infos[cont])[5])+" "*30 + "\n", justify=LEFT).grid(row=5, column=0,sticky=NW)
     lab_doc = Label(frame_info, text="TIPO DOC.:\t"+str((Infos[cont])[0])+" "*30 + "\n", justify=LEFT).grid(row=6, column=0,sticky=NW)
-    lab_not = Label(frame_info, text="NOTAS:\t\t"+str((Infos[cont])[6])+" "*30 + "\n\n\n\n\n\n\n\n\n", justify=LEFT).grid(row=7, column=0,sticky=NW)
+    #lab_not = Label(frame_info, text="NOTAS:\t\t"+str((Infos[cont])[6])+" "*30 + "\n\n\n\n\n\n\n\n\n", justify=LEFT).grid(row=7, column=0,sticky=NW)
+    lab_not2 = Message(frame_info, text=str((Infos[cont])[6]), width=200, padx=150, justify=LEFT).grid(row=7, column=0, sticky=NW)
+    lab_not1 = Label(frame_info, text="NOTAS:", justify=LEFT).grid(row=7, column=0, sticky=NW)
 
 
 # PROGRAMA
